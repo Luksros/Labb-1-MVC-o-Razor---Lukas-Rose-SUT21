@@ -46,13 +46,19 @@
                     @Html.DisplayFor(modelItem => item.Book.Author)
                 </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LoanStart)
+                <label>@item.LoanStart.ToString("yy-MM-dd")</label>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LoanEnd)
+                    <label>@item.LoanEnd.ToString("yy-MM-dd")</label>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Returned)
+                @if(item.Returned){
+                    <label class="text-success">RETURNED</label>
+                }
+                else if(!item.Returned && (DateTime.Now > item.LoanEnd) ){
+                    <label class="text-danger">OVERDUE</label>
+                }
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

@@ -22,7 +22,7 @@ namespace Labb_1_MVC_o_Razor_v2.Controllers
         // GET: Loans
         public async Task<IActionResult> Index()
         {
-            var appDbContext = _context.Loans.Include(l => l.Book).Include(l => l.Customer);
+            var appDbContext = _context.Loans.Include(l => l.Book).Include(l => l.Customer).OrderByDescending(l => l.LoanStart);
             return View(await appDbContext.ToListAsync());
         }
 
