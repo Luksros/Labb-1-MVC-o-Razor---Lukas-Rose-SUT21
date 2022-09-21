@@ -1,0 +1,55 @@
+﻿@model Labb_1_MVC_o_Razor_v2.Models.Customer
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+    </dl>
+    <hr />
+    <div>
+        <h4>Loan History</h4>
+        <br />
+        @foreach(var item in ViewData["CustomerLoans"] as IEnumerable<Loan>)
+            {
+                <h6>@item.Book.Title</h6>
+                <p>Loan Start Date: @item.LoanStart.ToString("yy-MM-dd")</p>
+                <p>Loan End Date: @item.LoanEnd.ToString("yy-MM-dd")</p>
+                <br />
+            }
+    </div>
+    <hr />
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
